@@ -48,3 +48,7 @@
 ## 线程
 - 每一次请求都是一个单独的线程
 - ThreadLoacal可以为每一个线程提供单独一份存储空间
+
+## 分页查询员工
+- pageHelper更加方便的使用:mapper接口中
+- 对于时间转换格式统一处理：config包下的WebMvcConfiguration中
