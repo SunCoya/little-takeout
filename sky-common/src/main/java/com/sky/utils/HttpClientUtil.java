@@ -48,13 +48,10 @@ public class HttpClientUtil {
                 }
             }
             URI uri = builder.build();
-
             //创建GET请求
             HttpGet httpGet = new HttpGet(uri);
-
             //发送请求
             response = httpClient.execute(httpGet);
-
             //判断响应状态
             if(response.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(response.getEntity(),"UTF-8");
