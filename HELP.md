@@ -49,6 +49,15 @@
 - 每一次请求都是一个单独的线程
 - ThreadLoacal可以为每一个线程提供单独一份存储空间
 
+## 新增员工
+- 使用BeanUtils拷贝两个Bean中的数据
+
 ## 分页查询员工
 - pageHelper更加方便的使用:mapper接口中
 - 对于时间转换格式统一处理：config包下的WebMvcConfiguration中
+
+##  启用/禁用员工
+- 在服务层使用Builder构造对象
+
+## 修改员工
+- 返回数据，在服务层隐藏密码

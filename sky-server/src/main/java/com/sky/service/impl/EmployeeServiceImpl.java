@@ -90,4 +90,29 @@ public class EmployeeServiceImpl implements EmployeeService {
         Page<Employee> p = employeeMapper.selectByCondition(employeePageQueryDTO.getName());
         return new PageResult(p.getTotal(),p.getResult());
     }
+
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        //使用lombok的builder链式变成创建对象
+        Employee employee = Employee.builder().id(id).status(status).build();
+        employeeMapper.update(employee);
+    }
+
+    @Override
+    public Employee getById(Long id) {
+        Employee employee = employeeMapper.getById(id);
+        // TODO 这里的密码一定要在这里改吗，能不能在DAO层控制呢（一开始就不接受）？
+        employee.setPassword("****");
+        return employee;
+    }
+
+    @Override
+    public void update(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO,employee);
+        //修改更新数据
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.update(employee);
+    }
 }

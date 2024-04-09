@@ -24,4 +24,10 @@ public interface EmployeeMapper {
 
     //也能返回page（继承List）
     Page<Employee> selectByCondition(String name);
+
+    void update(Employee employee);
+
+    //TODO 这里能不能和上面的select合并成一个方法呢？
+    @Select("select * from employee where id = #{id}")
+    Employee getById(Long id);
 }
