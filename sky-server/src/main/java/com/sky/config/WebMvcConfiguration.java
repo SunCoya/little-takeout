@@ -20,21 +20,14 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.List;
 
-/**
- * 配置类，注册web层相关组件
- */
+//配置类，注册web层相关组件
 @Configuration
 @Slf4j
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     @Autowired
     private JwtTokenAdminInterceptor jwtTokenAdminInterceptor;
-
-    /**
-     * 注册自定义拦截器
-     *
-     * @param registry
-     */
+    //注册自定义拦截器
     protected void addInterceptors(InterceptorRegistry registry) {
         log.info("开始注册自定义拦截器...");
         registry.addInterceptor(jwtTokenAdminInterceptor)
@@ -42,10 +35,9 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .excludePathPatterns("/admin/employee/login");
     }
 
-    /**
+    /*
      * 通过knife4j生成接口文档，访问doc.html可用看到静态网页
      * 可以进行信息查看与代码调试
-     * @return
      */
     @Bean
     public Docket docket() {
@@ -65,17 +57,14 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         return docket;
     }
 
-    /**
-     * 设置静态资源映射
-     * @param registry
-     */
+   //设置静态资源映射
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         log.info("开始设置静态资源映射...");
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
-    //扩展springmvc框架的消息转换器，对后端到前端的数据进行转换
+    //扩展springmvc框架的消息转换器，对后端到前端的数据进行转换（时间）
     @Override
     protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();

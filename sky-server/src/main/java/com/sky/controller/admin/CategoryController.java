@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-/**
- * 分类管理
- */
+//分类管理
 @RestController
 @RequestMapping("/admin/category")
 @Api(tags = "分类相关接口")
