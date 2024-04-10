@@ -67,6 +67,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     //扩展springmvc框架的消息转换器，对后端到前端的数据进行转换（时间）
     @Override
     protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        log.info("扩展消息转换器");
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         //使用common工程下的json包中的工具
         converter.setObjectMapper(new JacksonObjectMapper());

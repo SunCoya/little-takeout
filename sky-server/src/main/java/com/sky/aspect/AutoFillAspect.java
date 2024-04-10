@@ -47,13 +47,15 @@ public class AutoFillAspect {
         //赋值，通过反射
         if (operationType==OperationType.INSERT){
             Method setCreateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_TIME, LocalDateTime.class);
-            Method setCreateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_USER, Long.class);
             setCreateTime.invoke(entity,now);
+
+            Method setCreateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_USER, Long.class);
             setCreateUser.invoke(entity,currentId);
         }
         Method setUpdateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);
-        Method setUpdateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);
         setUpdateTime.invoke(entity,now);
+
+        Method setUpdateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);
         setUpdateUser.invoke(entity,currentId);
     }
 }
