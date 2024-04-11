@@ -10,7 +10,7 @@ import com.sky.entity.DishFlavor;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
-import com.sky.mapper.SetMealDishMapper;
+import com.sky.mapper.SetmealDishMapper;
 import com.sky.result.PageResult;
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
@@ -29,7 +29,7 @@ public class DishServiceImpl implements DishService {
     @Autowired
     private DishFlavorMapper dishFlavorMapper;
     @Autowired
-    SetMealDishMapper setMealDishMapper;
+    SetmealDishMapper setMealDishMapper;
     @Transactional
     public void saveWithFlavor(DishDTO dishDTO) {
         Dish dish = new Dish();
@@ -80,24 +80,28 @@ public class DishServiceImpl implements DishService {
         return dishVO;
     }
 
-
-    //修改菜品
     @Override
     @Transactional
     public void updateWithFlavor(DishDTO dishDTO) {
         Dish dish = new Dish();
         BeanUtils.copyProperties(dishDTO,dish);
         dishMapper.update(dish);
-
         Long dishId = dish.getId();
         //修改口味，先删除，再新增
         dishFlavorMapper.deleteByDishIds(List.of(dishId));
-
-
         List<DishFlavor> flavors = dishDTO.getFlavors();
         if (flavors!=null && flavors.size()>0){
             flavors.forEach(dishFlavor->dishFlavor.setDishId(dishId));
             dishFlavorMapper.insertBatch(flavors);
         }
+    }
+
+    @Override
+    public List<Dish> list(Long categoryId) {
+        Dish dish = Dish.builder()
+                .categoryId(categoryId)
+                .status(StatusConstant.ENABLE)
+                .build();
+        return dishMapper.list(dish);
     }
 }
