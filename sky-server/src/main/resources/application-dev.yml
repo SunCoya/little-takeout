@@ -12,7 +12,12 @@ sky:
     password: 123456
     #redis共16（0-15）个库
     database: 0
+
 aliyun:
   oss:
     endpoint: https://oss-cn-beijing.aliyuncs.com
     bucketName: suncoya-bucket
+
+wechat:
+  appid: wxb803c3902495c724
+  secret: aeacd9bf2b513ef312bf7011c88605ee
