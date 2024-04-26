@@ -18,14 +18,12 @@ import java.util.List;
 @RestController("userDishController")
 @RequestMapping("/user/dish")
 @Slf4j
-@Api(tags = "C端-菜品浏览接口")
 public class DishController {
     @Autowired
     private DishService dishService;
     @Autowired
     private RedisTemplate redisTemplate;
     @GetMapping("/list")
-    @ApiOperation("根据分类id查询菜品")
     public Result<List<DishVO>> list(Long categoryId) {
         //先查缓存，没有就查数据库并保存数据
         String key = "dish_"+categoryId;

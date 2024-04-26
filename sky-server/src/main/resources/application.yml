@@ -28,6 +28,7 @@ mybatis:
     #开启驼峰命名
     map-underscore-to-camel-case: true
 
+#日志，这里根据包名配置
 logging:
   level:
     com:

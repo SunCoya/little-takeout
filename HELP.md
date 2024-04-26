@@ -136,7 +136,6 @@
 ## 设置营业状态
 - 新增两个shopController，需要给两个同名bean设置不同名
 
-
 ## 使用HttpClient构造与发送请求
 - 阿里云oss-sdk的依赖中使用到了
 - 在测试类中测试
@@ -153,3 +152,16 @@
 ## Day8
 - 通过redis来缓存查询的数据：用户查询则读取缓存，没有就去找数据库
 - 商家跟新时需要及时修改缓存:清理缓存，全清理，或者插入操作单独清理
+
+## springcache:实现了基于注解的缓存功能
+-- 使用需要导入maven坐标，详情见springcache-demo，看启动类与控制类
+-- @EnableCache:开启注解缓存功能，一般用于启动类
+-- @cacheable：方法执行前先查询缓存中数据，查到直接返回，没有则调用方法，并将返回值放到缓存中
+-- @CachePut：将方法返回值放到缓存中
+-- @CacheEvict：将一条或者多条数据从缓存中删除
+
+## 在项目中使用SpringCache
+-- 导入坐标spring-boot-starter-cache
+-- 在启动类上开启缓存注解功能
+-- 在用户端查列表的时候加上cacheable注解
+-- 在管理端改数据库库的时候加上CacheEvict注解
