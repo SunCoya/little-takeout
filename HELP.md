@@ -163,5 +163,9 @@
 ## 在项目中使用SpringCache
 -- 导入坐标spring-boot-starter-cache
 -- 在启动类上开启缓存注解功能
--- 在用户端查列表的时候加上cacheable注解
+-- 在用户端查setMeal列表的时候加上cacheable注解
 -- 在管理端改数据库库的时候加上CacheEvict注解
+
+## 购物车开发
+-- 在设计数据库时，冗余数据可以提高数据库访问速度
+-- 购物车开发,再次使用到了动态sql，BeanUtils，通过线程获取用户ID
